@@ -4,449 +4,536 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Divya S K | Anime Profile</title>
+  <title>DEDICATE YOUR HEART</title>
 
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap');
-
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+    }
+
+    html {
       scroll-behavior: smooth;
     }
 
     body {
-      font-family: 'Poppins', sans-serif;
-      color: #fff;
-      background:
-        radial-gradient(circle at 20% 20%, rgba(255, 106, 0, 0.25), transparent 25%),
-        radial-gradient(circle at 80% 80%, rgba(128, 0, 255, 0.25), transparent 25%),
-        #080812;
+      background: #050608;
+      color: white;
+      font-family: Georgia, "Times New Roman", serif;
       overflow-x: hidden;
     }
 
-    /* Animated background */
-    body::before {
-      content: "";
+    /* =========================
+       LOADING SCREEN
+    ========================== */
+
+    #loader {
       position: fixed;
       inset: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-      background-size: 45px 45px;
-      z-index: -2;
-      animation: gridMove 12s linear infinite;
+      z-index: 9999;
+      background: #050608;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      transition: 1s;
     }
 
-    @keyframes gridMove {
-      from {
-        transform: translateY(0);
-      }
-      to {
-        transform: translateY(45px);
-      }
+    #loader h1 {
+      font-size: clamp(2rem, 8vw, 5rem);
+      letter-spacing: 8px;
+      color: #d8d8d8;
+      text-align: center;
+      animation: pulse 2s infinite;
     }
 
-    /* Floating anime-style particles */
-    .particle {
+    #loader p {
+      margin-top: 20px;
+      color: #888;
+      letter-spacing: 5px;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: .4; }
+      50% { opacity: 1; }
+    }
+
+    /* =========================
+       BACKGROUND
+    ========================== */
+
+    .background {
       position: fixed;
-      width: 6px;
-      height: 6px;
-      background: #ff7200;
-      border-radius: 50%;
-      box-shadow: 0 0 15px #ff7200;
-      animation: float 6s infinite ease-in-out;
-      opacity: 0.7;
-      z-index: -1;
+      inset: 0;
+      z-index: -10;
+      background:
+        radial-gradient(circle at 70% 20%, rgba(100, 100, 100, .25), transparent 30%),
+        linear-gradient(to bottom, #182027 0%, #101418 45%, #030405 100%);
     }
 
-    .p1 { left: 10%; top: 20%; animation-delay: 0s; }
-    .p2 { left: 80%; top: 15%; animation-delay: 1s; }
-    .p3 { left: 65%; top: 70%; animation-delay: 2s; }
-    .p4 { left: 25%; top: 80%; animation-delay: 3s; }
-    .p5 { left: 50%; top: 40%; animation-delay: 4s; }
+    .moon {
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #fff, #bbb 55%, #777);
+      box-shadow: 0 0 80px rgba(255,255,255,.25);
+      right: 10%;
+      top: 10%;
+      opacity: .7;
+    }
+
+    /* =========================
+       PARTICLES
+    ========================== */
+
+    #particles {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+    }
+
+    .particle {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: #ddd;
+      border-radius: 50%;
+      opacity: .5;
+      animation: float linear infinite;
+    }
 
     @keyframes float {
-      0%, 100% {
-        transform: translateY(0) scale(1);
+      from {
+        transform: translateY(110vh) translateX(0);
       }
-      50% {
-        transform: translateY(-40px) scale(1.5);
+
+      to {
+        transform: translateY(-10vh) translateX(100px);
       }
     }
 
-    /* Navigation */
+    /* =========================
+       NAVBAR
+    ========================== */
+
     nav {
       position: fixed;
       top: 0;
       width: 100%;
-      padding: 18px 8%;
+      padding: 22px 6%;
+      z-index: 1000;
+
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgba(8, 8, 18, 0.75);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255, 115, 0, 0.2);
-      z-index: 1000;
+
+      background: linear-gradient(
+        rgba(0,0,0,.7),
+        transparent
+      );
+
+      backdrop-filter: blur(4px);
     }
 
     .logo {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 22px;
-      font-weight: 800;
-      color: #ff7200;
-      text-shadow: 0 0 15px rgba(255, 114, 0, 0.8);
-    }
-
-    nav ul {
-      display: flex;
-      gap: 30px;
-      list-style: none;
+      font-size: 20px;
+      font-weight: bold;
+      letter-spacing: 4px;
     }
 
     nav a {
-      color: #fff;
+      color: white;
       text-decoration: none;
-      font-size: 14px;
-      transition: 0.3s;
+      margin-left: 30px;
+      font-size: 13px;
+      letter-spacing: 2px;
+      transition: .3s;
     }
 
     nav a:hover {
-      color: #ff7200;
-      text-shadow: 0 0 10px #ff7200;
+      color: #b7b7b7;
     }
 
-    /* Hero */
+    /* =========================
+       HERO
+    ========================== */
+
     .hero {
       min-height: 100vh;
       display: flex;
-      justify-content: center;
       align-items: center;
-      padding: 120px 8% 60px;
+      justify-content: center;
+
+      position: relative;
+      padding: 100px 7% 50px;
+      perspective: 1200px;
     }
 
     .hero-content {
+      width: 100%;
+      max-width: 1400px;
+
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .hero-text {
+      transform-style: preserve-3d;
+      transition: transform .2s ease-out;
+    }
+
+    .small-title {
+      color: #aaa;
+      letter-spacing: 7px;
+      font-size: 13px;
+      margin-bottom: 25px;
+    }
+
+    .hero h1 {
+      font-size: clamp(3.5rem, 8vw, 8rem);
+      line-height: .85;
+      text-transform: uppercase;
+      letter-spacing: -5px;
+
+      text-shadow:
+        4px 4px 0 #222,
+        0 0 30px rgba(255,255,255,.12);
+    }
+
+    .hero h1 span {
+      display: block;
+      color: #aaa;
+    }
+
+    .quote {
+      margin-top: 35px;
+      max-width: 550px;
+      font-size: 18px;
+      line-height: 1.8;
+      color: #c5c5c5;
+    }
+
+    .hero-buttons {
+      margin-top: 35px;
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 15px 28px;
+      border: 1px solid #777;
+      color: white;
+      text-decoration: none;
+      letter-spacing: 2px;
+      font-size: 12px;
+      transition: .3s;
+      background: rgba(0,0,0,.35);
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: white;
+      color: black;
+      transform: translateY(-4px);
+    }
+
+    .btn-primary {
+      background: white;
+      color: black;
+    }
+
+    /* =========================
+       EREN IMAGE
+    ========================== */
+
+    .character {
+      height: 650px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      transform-style: preserve-3d;
+      transition: transform .15s ease-out;
+    }
+
+    .character-card {
+      width: min(430px, 90%);
+      height: 590px;
+      position: relative;
+
+      transform-style: preserve-3d;
+      transform: rotateY(-8deg) rotateX(3deg);
+
+      border: 1px solid rgba(255,255,255,.15);
+
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(255,255,255,.05),
+          rgba(0,0,0,.8)
+        );
+
+      box-shadow:
+        0 30px 100px rgba(0,0,0,.8),
+        0 0 60px rgba(255,255,255,.05);
+
+      overflow: hidden;
+    }
+
+    .character-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+
+      background:
+        linear-gradient(
+          135deg,
+          transparent 35%,
+          rgba(255,255,255,.12),
+          transparent 65%
+        );
+
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .eren-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+
+      filter:
+        grayscale(20%)
+        contrast(1.15)
+        brightness(.75);
+
+      transition: transform 1s ease;
+    }
+
+    .character-card:hover .eren-image {
+      transform: scale(1.07);
+    }
+
+    .character-name {
+      position: absolute;
+      bottom: 25px;
+      left: 25px;
+      z-index: 5;
+
+      font-size: 35px;
+      letter-spacing: 5px;
+      text-shadow: 0 3px 20px black;
+    }
+
+    /* =========================
+       WALL
+    ========================== */
+
+    .wall {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 120px;
+
+      background:
+        linear-gradient(
+          to top,
+          #181818,
+          #393939
+        );
+
+      clip-path: polygon(
+        0 30%,
+        5% 27%,
+        10% 31%,
+        15% 26%,
+        20% 30%,
+        25% 25%,
+        30% 29%,
+        35% 26%,
+        40% 30%,
+        45% 25%,
+        50% 29%,
+        55% 26%,
+        60% 30%,
+        65% 25%,
+        70% 29%,
+        75% 26%,
+        80% 30%,
+        85% 25%,
+        90% 29%,
+        95% 26%,
+        100% 30%,
+        100% 100%,
+        0 100%
+      );
+
+      opacity: .7;
+    }
+
+    /* =========================
+       MOTIVATION
+    ========================== */
+
+    .motivation {
+      min-height: 100vh;
+      padding: 140px 8%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background:
+        linear-gradient(
+          rgba(0,0,0,.75),
+          rgba(0,0,0,.9)
+        );
+    }
+
+    .speech {
       max-width: 900px;
       text-align: center;
     }
 
-    .badge {
-      display: inline-block;
-      padding: 8px 18px;
-      border: 1px solid #ff7200;
-      border-radius: 30px;
-      color: #ff9d4d;
-      font-size: 13px;
-      margin-bottom: 20px;
-      background: rgba(255, 114, 0, 0.08);
-      box-shadow: 0 0 20px rgba(255, 114, 0, 0.2);
+    .speech-label {
+      color: #777;
+      letter-spacing: 8px;
+      font-size: 12px;
+      margin-bottom: 30px;
     }
 
-    .hero h1 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: clamp(45px, 8vw, 90px);
+    .speech h2 {
+      font-size: clamp(2.5rem, 6vw, 6rem);
+      text-transform: uppercase;
       line-height: 1;
-      margin-bottom: 20px;
-      background: linear-gradient(90deg, #fff, #ff7200, #ffb347);
-      -webkit-background-clip: text;
-      color: transparent;
-      animation: glow 2s infinite alternate;
+      margin-bottom: 40px;
     }
 
-    @keyframes glow {
-      from {
-        filter: drop-shadow(0 0 5px rgba(255, 114, 0, 0.3));
-      }
-      to {
-        filter: drop-shadow(0 0 20px rgba(255, 114, 0, 0.6));
-      }
-    }
-
-    .hero h2 {
-      font-size: 22px;
-      font-weight: 400;
-      color: #ddd;
-      margin-bottom: 15px;
-    }
-
-    .hero p {
+    .speech-text {
+      min-height: 180px;
+      font-size: clamp(1.1rem, 2vw, 1.5rem);
+      line-height: 2;
       color: #aaa;
-      max-width: 650px;
-      margin: auto;
-      line-height: 1.8;
     }
 
-    .chakra {
-      margin: 35px auto;
-      width: 100px;
-      height: 100px;
-      border: 3px solid #ff7200;
-      border-radius: 50%;
-      position: relative;
-      box-shadow:
-        0 0 20px #ff7200,
-        inset 0 0 20px rgba(255, 114, 0, 0.4);
-      animation: spin 8s linear infinite;
+    #speechLine {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: 1s;
     }
 
-    .chakra::before,
-    .chakra::after {
-      content: "";
-      position: absolute;
-      inset: 15px;
-      border: 2px solid #ffb347;
-      border-radius: 50%;
+    #speechLine.show {
+      opacity: 1;
+      transform: translateY(0);
     }
 
-    .chakra::after {
-      inset: 30px;
-      border-color: #fff;
+    .speech-controls {
+      margin-top: 35px;
     }
 
-    @keyframes spin {
-      to {
-        transform: rotate(360deg);
-      }
-    }
+    /* =========================
+       FINAL
+    ========================== */
 
-    .btn {
-      display: inline-block;
-      margin-top: 25px;
-      padding: 13px 28px;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 30px;
-      background: linear-gradient(90deg, #ff5e00, #ff9d00);
-      box-shadow: 0 0 25px rgba(255, 114, 0, 0.4);
-      transition: 0.3s;
-      font-weight: 600;
-    }
+    .final {
+      min-height: 100vh;
 
-    .btn:hover {
-      transform: translateY(-4px) scale(1.03);
-      box-shadow: 0 0 35px rgba(255, 114, 0, 0.7);
-    }
-
-    /* Sections */
-    section {
-      padding: 100px 8%;
-    }
-
-    .section-title {
-      text-align: center;
-      font-family: 'Orbitron', sans-serif;
-      font-size: 35px;
-      margin-bottom: 50px;
-    }
-
-    .section-title span {
-      color: #ff7200;
-    }
-
-    /* About */
-    .about {
-      max-width: 950px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 25px;
-    }
-
-    .card {
-      padding: 30px;
-      border-radius: 20px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255, 114, 0, 0.2);
-      backdrop-filter: blur(10px);
-      transition: 0.4s;
-    }
-
-    .card:hover {
-      transform: translateY(-8px);
-      border-color: #ff7200;
-      box-shadow: 0 15px 40px rgba(255, 114, 0, 0.15);
-    }
-
-    .card h3 {
-      color: #ff9d4d;
-      margin-bottom: 12px;
-      font-size: 20px;
-    }
-
-    .card p {
-      color: #aaa;
-      line-height: 1.8;
-    }
-
-    /* Interests */
-    .interests {
       display: flex;
+      align-items: center;
       justify-content: center;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
 
-    .interest {
-      width: 200px;
-      padding: 30px 20px;
       text-align: center;
-      border-radius: 20px;
-      background: linear-gradient(
-        145deg,
-        rgba(255,114,0,0.12),
-        rgba(120,0,255,0.08)
-      );
-      border: 1px solid rgba(255,255,255,0.1);
-      transition: 0.3s;
-    }
+      padding: 60px 20px;
 
-    .interest:hover {
-      transform: translateY(-10px) rotate(-1deg);
-      box-shadow: 0 15px 35px rgba(255,114,0,0.2);
-    }
-
-    .interest .icon {
-      font-size: 45px;
-      margin-bottom: 15px;
-    }
-
-    .interest h3 {
-      margin-bottom: 8px;
-    }
-
-    .interest p {
-      color: #999;
-      font-size: 14px;
-    }
-
-    /* Anime */
-    .anime-card {
-      max-width: 850px;
-      margin: auto;
-      padding: 40px;
-      border-radius: 25px;
       background:
-        linear-gradient(
-          135deg,
-          rgba(255, 114, 0, 0.15),
-          rgba(50, 0, 100, 0.15)
+        radial-gradient(
+          circle,
+          #242424 0%,
+          #070707 55%,
+          #000 100%
         );
-      border: 1px solid rgba(255, 114, 0, 0.35);
-      text-align: center;
-      box-shadow: 0 0 50px rgba(255, 114, 0, 0.08);
     }
 
-    .anime-symbol {
-      font-size: 65px;
-      margin-bottom: 15px;
+    .final h2 {
+      font-size: clamp(3rem, 9vw, 9rem);
+      line-height: .85;
+      letter-spacing: -5px;
+
+      text-shadow:
+        0 0 30px rgba(255,255,255,.15);
     }
 
-    .anime-card h3 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 30px;
-      color: #ff8a32;
-      margin-bottom: 15px;
+    .final p {
+      margin-top: 30px;
+      color: #888;
+      letter-spacing: 5px;
     }
 
-    .anime-card p {
-      color: #bbb;
-      line-height: 1.8;
+    .final .btn {
+      margin-top: 40px;
+      display: inline-block;
     }
 
-    .quote {
-      margin-top: 25px;
-      padding: 20px;
-      border-left: 3px solid #ff7200;
-      color: #eee;
-      font-style: italic;
-      background: rgba(255,255,255,0.03);
-    }
+    /* =========================
+       FOOTER
+    ========================== */
 
-    /* Web series */
-    .series-container {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    .series {
-      padding: 30px 20px;
-      text-align: center;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      transition: 0.3s;
-    }
-
-    .series:hover {
-      border-color: #8a4fff;
-      box-shadow: 0 0 25px rgba(138,79,255,0.2);
-      transform: scale(1.03);
-    }
-
-    .series span {
-      font-size: 35px;
-      display: block;
-      margin-bottom: 10px;
-    }
-
-    .series h3 {
-      margin-bottom: 8px;
-    }
-
-    .series p {
-      color: #999;
-      font-size: 13px;
-    }
-
-    /* Footer */
     footer {
       text-align: center;
-      padding: 40px 20px;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      color: #777;
+      padding: 30px;
+      background: #020202;
+      color: #555;
+      font-size: 11px;
+      letter-spacing: 2px;
     }
 
-    footer span {
-      color: #ff7200;
-    }
+    /* =========================
+       RESPONSIVE
+    ========================== */
 
-    /* Mobile */
-    @media (max-width: 768px) {
+    @media (max-width: 850px) {
 
-      nav {
-        padding: 15px 5%;
-      }
-
-      nav ul {
+      nav a {
         display: none;
       }
 
       .hero {
-        padding-top: 120px;
+        padding-top: 130px;
       }
 
-      .about {
+      .hero-content {
         grid-template-columns: 1fr;
       }
 
-      .series-container {
-        grid-template-columns: 1fr;
+      .hero-text {
+        text-align: center;
       }
 
-      section {
-        padding: 75px 5%;
+      .quote {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+      }
+
+      .character {
+        height: 500px;
+      }
+
+      .character-card {
+        height: 480px;
       }
 
       .hero h1 {
-        font-size: 48px;
-      }
-
-      .anime-card {
-        padding: 25px;
+        letter-spacing: -2px;
       }
     }
   </style>
@@ -454,220 +541,350 @@
 
 <body>
 
-  <!-- Floating particles -->
-  <div class="particle p1"></div>
-  <div class="particle p2"></div>
-  <div class="particle p3"></div>
-  <div class="particle p4"></div>
-  <div class="particle p5"></div>
+  <!-- =========================
+       LOADER
+  ========================== -->
 
-  <!-- Navigation -->
+  <div id="loader">
+    <h1>DEDICATE</h1>
+    <p>YOUR HEART</p>
+  </div>
+
+  <!-- =========================
+       BACKGROUND
+  ========================== -->
+
+  <div class="background">
+    <div class="moon"></div>
+  </div>
+
+  <div id="particles"></div>
+
+  <!-- =========================
+       NAVIGATION
+  ========================== -->
+
   <nav>
-    <div class="logo">DIVYA.S.K</div>
+    <div class="logo">自由</div>
 
-    <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#anime">Anime</a></li>
-      <li><a href="#series">Web Series</a></li>
-    </ul>
+    <div>
+      <a href="#home">HOME</a>
+      <a href="#speech">SPEECH</a>
+      <a href="#final">RISE</a>
+    </div>
   </nav>
 
-  <!-- Hero -->
+  <!-- =========================
+       HERO
+  ========================== -->
+
   <section class="hero" id="home">
 
     <div class="hero-content">
 
-      <div class="badge">
-        ⚡ 3rd Semester CSE Student
+      <div class="hero-text" id="heroText">
+
+        <div class="small-title">
+          BEYOND THE WALLS
+        </div>
+
+        <h1>
+          KEEP
+          <span>MOVING</span>
+          FORWARD
+        </h1>
+
+        <p class="quote">
+          The world may be cruel.
+          The road may be terrifying.
+          But as long as you keep moving,
+          your story is not over.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#speech" class="btn btn-primary">
+            HEAR THE SPEECH
+          </a>
+
+          <a href="#final" class="btn">
+            DEDICATE YOUR HEART
+          </a>
+        </div>
+
       </div>
 
-      <h1>DIVYA S K</h1>
+      <!-- EREN -->
+
+      <div class="character" id="character">
+
+        <div class="character-card">
+
+          <!--
+            IMPORTANT:
+            Put your Eren image in the same folder
+            and name it "eren.jpg"
+          -->
+
+          <img
+            src="./HD-wallpaper-eren-smiling-eren.jpg"
+            alt="Eren"
+            class="eren-image"
+          />
+
+          <div class="character-name">
+            EREN
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="wall"></div>
+
+  </section>
+
+  <!-- =========================
+       MOTIVATIONAL SPEECH
+  ========================== -->
+
+  <section class="motivation" id="speech">
+
+    <div class="speech">
+
+      <div class="speech-label">
+        A MESSAGE TO YOUR FUTURE SELF
+      </div>
 
       <h2>
-        Welcome to my Anime World 🍥
+        DON'T GIVE UP
+      </h2>
+
+      <div class="speech-text">
+        <p id="speechLine"></p>
+      </div>
+
+      <div class="speech-controls">
+
+        <button
+          class="btn btn-primary"
+          onclick="nextSpeech()"
+        >
+          NEXT
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- =========================
+       FINAL
+  ========================== -->
+
+  <section class="final" id="final">
+
+    <div>
+
+      <div class="small-title">
+        YOUR CHOICE
+      </div>
+
+      <h2>
+        DEDICATE<br>
+        YOUR<br>
+        HEART
       </h2>
 
       <p>
-        Heyyy! I'm Divya S K, a 3rd semester Computer Science
-        Engineering student from JIT Davangere.  
-        I love coding, anime, and binge-watching web series!
+        EVEN WHEN YOU ARE AFRAID — MOVE FORWARD.
       </p>
 
-      <div class="chakra"></div>
-
-      <a href="#about" class="btn">
-        Explore My World →
+      <a href="#home" class="btn btn-primary">
+        RISE AGAIN
       </a>
 
     </div>
 
   </section>
 
-  <!-- About -->
-  <section id="about">
-
-    <h2 class="section-title">
-      About <span>Me</span>
-    </h2>
-
-    <div class="about">
-
-      <div class="card">
-        <h3>👩‍💻 Who Am I?</h3>
-        <p>
-          I'm Divya S K, currently pursuing Computer Science Engineering
-          and enjoying my journey through the world of technology,
-          programming and creativity.
-        </p>
-      </div>
-
-      <div class="card">
-        <h3>🎓 My College</h3>
-        <p>
-          I'm a 3rd semester CSE student at JIT Davangere,
-          learning new technologies and building my skills
-          one step at a time.
-        </p>
-      </div>
-
-      <div class="card">
-        <h3>💻 Tech + Anime</h3>
-        <p>
-          Coding during the day and anime at night!
-          My perfect combination is creativity, technology
-          and a little bit of anime magic.
-        </p>
-      </div>
-
-      <div class="card">
-        <h3>✨ My Vibe</h3>
-        <p>
-          Curious mind, anime lover, web-series binge watcher
-          and someone who believes that every new challenge
-          is another adventure.
-        </p>
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- Interests -->
-  <section>
-
-    <h2 class="section-title">
-      My <span>Interests</span>
-    </h2>
-
-    <div class="interests">
-
-      <div class="interest">
-        <div class="icon">💻</div>
-        <h3>Coding</h3>
-        <p>Creating things with technology.</p>
-      </div>
-
-      <div class="interest">
-        <div class="icon">🍥</div>
-        <h3>Anime</h3>
-        <p>Living in my anime universe.</p>
-      </div>
-
-      <div class="interest">
-        <div class="icon">🎬</div>
-        <h3>Web Series</h3>
-        <p>One more episode... always!</p>
-      </div>
-
-      <div class="interest">
-        <div class="icon">✨</div>
-        <h3>Creativity</h3>
-        <p>Turning ideas into something cool.</p>
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- Anime -->
-  <section id="anime">
-
-    <h2 class="section-title">
-      My <span>Anime</span> Side
-    </h2>
-
-    <div class="anime-card">
-
-      <div class="anime-symbol">🍥</div>
-
-      <h3>NARUTO UZUMAKI</h3>
-
-      <p>
-        One of my favourite anime characters!
-        Naruto's journey from an underestimated ninja
-        to someone who earns the respect of everyone around him
-        is one of the reasons I love the series.
-      </p>
-
-      <div class="quote">
-        Believe it! ⚡🍥
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- Web Series -->
-  <section id="series">
-
-    <h2 class="section-title">
-      Web Series <span>Zone</span>
-    </h2>
-
-    <div class="series-container">
-
-      <div class="series">
-        <span>📺</span>
-        <h3>Binge Mode</h3>
-        <p>
-          Started watching one episode...
-          somehow finished the entire season.
-        </p>
-      </div>
-
-      <div class="series">
-        <span>🍿</span>
-        <h3>Movie Night</h3>
-        <p>
-          Snacks + comfortable setup +
-          a good series = perfect evening.
-        </p>
-      </div>
-
-      <div class="series">
-        <span>🔥</span>
-        <h3>Next Episode?</h3>
-        <p>
-          Of course! There is always time
-          for one more episode.
-        </p>
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- Footer -->
   <footer>
-    <p>
-      Made with ❤️, code & a little bit of <span>chakra</span>
-    </p>
-
-    <p>
-      © 2026 Divya S K | Anime Coder 🍥
-    </p>
+    INSPIRED BY THE SPIRIT OF DETERMINATION
   </footer>
+
+  <script>
+
+    /* =========================
+       LOADING
+    ========================== */
+
+    window.addEventListener("load", () => {
+
+      setTimeout(() => {
+
+        document.getElementById("loader").style.opacity = "0";
+
+        setTimeout(() => {
+          document.getElementById("loader").style.display = "none";
+        }, 1000);
+
+      }, 1200);
+
+    });
+
+
+    /* =========================
+       PARTICLES
+    ========================== */
+
+    const particleContainer =
+      document.getElementById("particles");
+
+    for (let i = 0; i < 90; i++) {
+
+      const particle =
+        document.createElement("div");
+
+      particle.classList.add("particle");
+
+      particle.style.left =
+        Math.random() * 100 + "%";
+
+      particle.style.animationDuration =
+        (5 + Math.random() * 12) + "s";
+
+      particle.style.animationDelay =
+        Math.random() * 10 + "s";
+
+      particle.style.opacity =
+        Math.random();
+
+      const size =
+        1 + Math.random() * 4;
+
+      particle.style.width = size + "px";
+      particle.style.height = size + "px";
+
+      particleContainer.appendChild(particle);
+    }
+
+
+    /* =========================
+       3D MOUSE EFFECT
+    ========================== */
+
+    const character =
+      document.getElementById("character");
+
+    const heroText =
+      document.getElementById("heroText");
+
+    document.addEventListener("mousemove", (event) => {
+
+      const x =
+        (event.clientX / window.innerWidth - .5);
+
+      const y =
+        (event.clientY / window.innerHeight - .5);
+
+      character.style.transform =
+        `translate(${x * 18}px, ${y * 12}px)
+         rotateY(${x * 5}deg)
+         rotateX(${-y * 4}deg)`;
+
+      heroText.style.transform =
+        `translate(${x * -8}px, ${y * -5}px)
+         rotateY(${x * -2}deg)`;
+
+    });
+
+
+    /* =========================
+       MOTIVATIONAL SPEECH
+    ========================== */
+
+    const speeches = [
+
+      "You are going to face moments when everything feels impossible.",
+
+      "You will be afraid. You will fail. You will lose people and opportunities.",
+
+      "But failure is not the end of your story. It is another step on the road.",
+
+      "You do not need to see the entire path. You only need enough courage to take the next step.",
+
+      "There will always be a reason to stop. Choose to find one more reason to continue.",
+
+      "Your past does not decide who you become. Your decisions today do.",
+
+      "So stand up. Breathe. Look forward.",
+
+      "Even if your hands are shaking, move.",
+
+      "Even if you are afraid, move.",
+
+      "Even if nobody believes in you, believe in the person you are becoming.",
+
+      "Your story is still being written.",
+
+      "KEEP MOVING FORWARD."
+    ];
+
+    let speechIndex = 0;
+
+    const speechLine =
+      document.getElementById("speechLine");
+
+    function nextSpeech() {
+
+      speechLine.classList.remove("show");
+
+      setTimeout(() => {
+
+        speechLine.textContent =
+          speeches[speechIndex];
+
+        speechLine.classList.add("show");
+
+        speechIndex++;
+
+        if (speechIndex >= speeches.length) {
+          speechIndex = 0;
+        }
+
+      }, 400);
+
+    }
+
+    /* Show first speech automatically */
+
+    setTimeout(() => {
+      nextSpeech();
+    }, 1800);
+
+
+    /* =========================
+       BUTTON EFFECT
+    ========================== */
+
+    document.querySelectorAll(".btn").forEach(button => {
+
+      button.addEventListener("click", () => {
+
+        button.style.transform =
+          "scale(.95)";
+
+        setTimeout(() => {
+          button.style.transform = "";
+        }, 150);
+
+      });
+
+    });
+
+  </script>
 
 </body>
 </html>
