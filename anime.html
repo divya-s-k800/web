@@ -1,1 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Divya | Anime Developer World</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  min-height:100vh;overflow:hidden;color:#fff;
+  font-family:Arial,sans-serif;background:#050719;
+}
+.scene{
+  position:fixed;inset:0;overflow:hidden;
+  background:radial-gradient(ellipse at 50% 40%,#202d70 0%,#101432 38%,#03040d 100%);
+  perspective:900px;
+}
+.stars{
+  position:absolute;inset:-50%;
+  background-image:radial-gradient(2px 2px at 30px 40px,#fff 99%,transparent),
+  radial-gradient(1px 1px at 100px 130px,#8feaff 99%,transparent),
+  radial-gradient(2px 2px at 180px 80px,#fff 99%,transparent);
+  background-size:220px 180px;
+  animation:drift 35s linear infinite;
+}
+.moon{
+  position:absolute;width:120px;height:120px;border-radius:50%;
+  top:13%;right:15%;
+  background:radial-gradient(circle at 35% 30%,#fff,#a7c9ff 65%,#6377c7);
+  box-shadow:0 0 35px #88b9ff,0 0 100px #526cff88;
+  animation:float 5s ease-in-out infinite;
+}
+.horizon{
+  position:absolute;bottom:25%;height:2px;width:100%;
+  background:#58dfff;box-shadow:0 0 30px #36baff;
+}
+.city{
+  position:absolute;bottom:0;width:100%;height:32%;
+  background:repeating-linear-gradient(90deg,#070b20 0 30px,#18224a 31px 45px,#080b1b 46px 68px);
+  clip-path:polygon(0 30%,8% 30%,8% 10%,15% 10%,15% 45%,24% 45%,24% 0,31% 0,31% 35%,44% 35%,44% 15%,53% 15%,53% 40%,66% 40%,66% 5%,74% 5%,74% 33%,87% 33%,87% 12%,94% 12%,94% 40%,100% 40%,100% 100%,0 100%);
+}
+.content{
+  position:relative;z-index:2;min-height:100vh;padding:25px;
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;text-align:center;
+  animation:appear 1.5s ease-out;
+  transform-style:preserve-3d;
+}
+.eyebrow{letter-spacing:5px;color:#88eaff;font-size:12px;margin-bottom:20px}
+h1{
+  font-size:clamp(42px,9vw,85px);margin-bottom:20px;
+  text-shadow:0 0 15px #4f9dff,0 0 45px #754dff;
+}
+p{line-height:1.9;color:#d8e3ff;max-width:520px}
+.buttons{display:flex;gap:15px;flex-wrap:wrap;justify-content:center;margin-top:28px}
+a{
+  color:white;text-decoration:none;border:1px solid #6ddcff;
+  padding:13px 20px;border-radius:9px;background:#192d6155;
+  box-shadow:0 0 15px #368dff33;transition:.3s;
+}
+a:hover{background:#254b91;transform:translateY(-5px);box-shadow:0 0 25px #4cdcff}
+.tagline{margin-top:35px;font-size:12px;letter-spacing:4px;color:#8ea8e7}
+.particle{
+  position:absolute;bottom:-10px;width:4px;height:4px;border-radius:50%;
+  background:#85eaff;box-shadow:0 0 12px #65baff;
+  animation:rise linear infinite;
+}
+@keyframes float{50%{transform:translateY(-18px)}}
+@keyframes drift{to{transform:translate3d(100px,50px,0)}}
+@keyframes rise{to{transform:translateY(-110vh);opacity:0}}
+@keyframes appear{from{opacity:0;transform:translateY(25px) translateZ(-80px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){
+ *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+<div class="scene">
+  <div class="stars"></div>
+  <div class="moon"></div>
+  <div class="city"></div>
+  <div class="horizon"></div>
+</div>
 
+<main class="content">
+  <div class="eyebrow">✦ WELCOME TO MY WORLD ✦</div>
+  <h1>Hi, I'm Divya 🌙</h1>
+  <p>
+    Computer Science Student · Anime Enthusiast<br>
+    C & Python · Learning Java and DSA<br>
+    <span style="color:#8beaff">Dream big. Learn daily. Build boldly.</span>
+  </p>
+  <div class="buttons">
+    <a href="https://github.com/divya-s-k800">⌘ GitHub</a>
+    <a href="https://github.com/divya-s-k800/web">✧ My Projects</a>
+  </div>
+  <div class="tagline">DREAM · CODE · REPEAT</div>
+</main>
+
+<script>
+for(let i=0;i<45;i++){
+  const p=document.createElement("span");
+  p.className="particle";
+  p.style.left=Math.random()*100+"%";
+  p.style.animationDuration=(5+Math.random()*9)+"s";
+  p.style.animationDelay=(-Math.random()*12)+"s";
+  document.body.appendChild(p);
+}
+</script>
+</body>
+</html>
